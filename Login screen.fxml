@@ -21,12 +21,12 @@
       </Text>
       <Text fill="#5f0099" layoutX="323.0" layoutY="158.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
          <font>
-            <Font name="Poppins Regular" size="12.0" />
+            <Font name="Poppins Regular" size="10.0" />
          </font>
       </Text>
-      <Text fill="#5f0099" layoutX="325.0" layoutY="238.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
+      <Text fill="#5f0099" layoutX="324.0" layoutY="232.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
          <font>
-            <Font name="Poppins Regular" size="12.0" />
+            <Font name="Poppins Regular" size="10.0" />
          </font>
       </Text>
       <ImageView fitHeight="400.0" fitWidth="289.0" pickOnBounds="true" preserveRatio="true" />
