@@ -1,0 +1,10 @@
+/Users/m1/Desktop/supermarket-main/client-gerant/src/main/java/gerant/App.java
+/Users/m1/Desktop/supermarket-main/client-gerant/src/main/java/gerant/controller/DashboardController.java
+/Users/m1/Desktop/supermarket-main/client-gerant/src/main/java/gerant/controller/LoginController.java
+/Users/m1/Desktop/supermarket-main/client-gerant/src/main/java/gerant/controller/ProduitFormController.java
+/Users/m1/Desktop/supermarket-main/client-gerant/src/main/java/gerant/model/Produit.java
+/Users/m1/Desktop/supermarket-main/client-gerant/src/main/java/gerant/model/Utilisateur.java
+/Users/m1/Desktop/supermarket-main/client-gerant/src/main/java/gerant/service/ApiClient.java
+/Users/m1/Desktop/supermarket-main/client-gerant/src/main/java/gerant/service/AuthService.java
+/Users/m1/Desktop/supermarket-main/client-gerant/src/main/java/gerant/service/ProduitService.java
+/Users/m1/Desktop/supermarket-main/client-gerant/src/main/java/gerant/service/Services.java

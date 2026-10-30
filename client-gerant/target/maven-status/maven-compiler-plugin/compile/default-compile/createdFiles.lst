@@ -1,0 +1,17 @@
+gerant/service/Services.class
+gerant/service/ApiClient$1.class
+gerant/controller/DashboardController$1.class
+gerant/model/Produit.class
+gerant/service/ApiClient.class
+gerant/controller/LoginController$1.class
+gerant/controller/DashboardController$2.class
+gerant/controller/DashboardController$3.class
+gerant/controller/ProduitFormController.class
+gerant/controller/LoginController.class
+gerant/App.class
+gerant/service/AuthService.class
+gerant/controller/DashboardController$4.class
+gerant/model/Utilisateur.class
+gerant/service/ProduitService.class
+gerant/controller/DashboardController.class
+gerant/controller/DashboardController$5.class

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+           fx:controller="gerant.controller.LoginController" styleClass="login-root"
+           prefWidth="900" prefHeight="560">
+
+    <!-- left green curved panel -->
+    <Region styleClass="login-curve" prefWidth="480" minWidth="480" maxWidth="480" maxHeight="Infinity"
+            StackPane.alignment="CENTER_LEFT"/>
+    <VBox alignment="CENTER" spacing="14" prefWidth="330" maxWidth="330" maxHeight="-Infinity"
+          StackPane.alignment="CENTER_LEFT">
+        <StackPane.margin><Insets left="30"/></StackPane.margin>
+        <ImageView fitWidth="84" fitHeight="84" preserveRatio="true" smooth="true">
+            <image><Image url="@../img/logo.png"/></image>
+        </ImageView>
+        <Label text="SuperGest" styleClass="login-brand"/>
+        <Label text="Gestion de supermarché simple et efficace" styleClass="login-tagline" wrapText="true"/>
+    </VBox>
+
+    <!-- right login form -->
+    <VBox alignment="CENTER" spacing="10" prefWidth="400" maxWidth="400" maxHeight="-Infinity"
+          StackPane.alignment="CENTER_RIGHT">
+        <StackPane.margin><Insets right="30"/></StackPane.margin>
+        <Label text="Bienvenue" styleClass="login-h1"/>
+        <Label text="Connectez-vous à votre espace gérant" styleClass="login-sub"/>
+        <Region prefHeight="16"/>
+        <TextField fx:id="loginField" promptText="Identifiant" maxWidth="320"/>
+        <PasswordField fx:id="passField" promptText="Mot de passe" onAction="#onLogin" maxWidth="320"/>
+        <Region prefHeight="10"/>
+        <Button fx:id="loginBtn" text="Se connecter" onAction="#onLogin" maxWidth="220"
+                styleClass="btn-primary, login-btn"/>
+        <Label fx:id="errorLabel" styleClass="error-label" wrapText="true" maxWidth="320"/>
+        <Label fx:id="hintLabel" styleClass="hint-label"/>
+    </VBox>
+</StackPane>

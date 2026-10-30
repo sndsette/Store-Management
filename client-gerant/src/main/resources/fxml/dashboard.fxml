@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+           fx:controller="gerant.controller.DashboardController" fx:id="rootPane">
+
+    <VBox>
+        <!-- TOP BAR -->
+        <HBox styleClass="topbar" alignment="CENTER_LEFT" spacing="6">
+            <fx:define><ToggleGroup fx:id="navGroup"/></fx:define>
+            <ImageView fitWidth="38" fitHeight="38" preserveRatio="true" smooth="true">
+                <image><Image url="@../img/logo.png"/></image>
+            </ImageView>
+            <VBox alignment="CENTER_LEFT" spacing="0">
+                <Label text="SuperGest" styleClass="brand"/>
+                <Label text="Espace gérant" styleClass="brand-sub"/>
+            </VBox>
+            <Region prefWidth="26" minWidth="26"/>
+            <ToggleButton fx:id="navOverview" text="Vue générale" selected="true" toggleGroup="$navGroup"
+                          styleClass="top-nav-btn" onAction="#showOverview"/>
+            <ToggleButton fx:id="navStock" text="Stock" toggleGroup="$navGroup"
+                          styleClass="top-nav-btn" onAction="#showStock"/>
+            <ToggleButton fx:id="navExp" text="Expirations" toggleGroup="$navGroup"
+                          styleClass="top-nav-btn" onAction="#showExp"/>
+            <ToggleButton fx:id="navProduits" text="Produits" toggleGroup="$navGroup"
+                          styleClass="top-nav-btn" onAction="#showProduits"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <HBox styleClass="user-box" alignment="CENTER_LEFT" spacing="10">
+                <Label fx:id="avatarLabel" styleClass="avatar"/>
+                <VBox>
+                    <Label fx:id="userNameLabel" styleClass="user-name"/>
+                    <Label fx:id="userRoleLabel" styleClass="user-role"/>
+                </VBox>
+            </HBox>
+            <Button fx:id="logoutBtn" text="⎋  Déconnexion" styleClass="nav-logout" onAction="#logout"/>
+        </HBox>
+
+        <!-- CONTENT -->
+        <VBox VBox.vgrow="ALWAYS" styleClass="content" spacing="20">
+            <HBox alignment="CENTER_LEFT" spacing="14">
+                <VBox spacing="2">
+                    <Label fx:id="pageTitle" styleClass="page-title"/>
+                    <Label fx:id="pageSub" styleClass="subtitle"/>
+                </VBox>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label fx:id="lastUpdateLabel" styleClass="subtitle"/>
+                <Button text="⟳  Actualiser" styleClass="btn-ghost" onAction="#refresh"/>
+            </HBox>
+
+            <StackPane VBox.vgrow="ALWAYS">
+
+                <!-- Vue générale -->
+                <ScrollPane fx:id="pageOverview" fitToWidth="true" styleClass="transparent-scroll">
+                    <VBox spacing="18">
+                        <HBox fx:id="kpiRow" spacing="16"/>
+                        <HBox spacing="16">
+                            <VBox styleClass="card" spacing="8" HBox.hgrow="ALWAYS" prefWidth="300">
+                                <Label text="Stock par catégorie (unités)" styleClass="card-title"/>
+                                <PieChart fx:id="pieChart" animated="false" labelsVisible="false" legendSide="BOTTOM" prefHeight="300"/>
+                            </VBox>
+                            <VBox styleClass="card" spacing="8" HBox.hgrow="ALWAYS" prefWidth="360">
+                                <Label text="Produits les plus proches du seuil" styleClass="card-title"/>
+                                <BarChart fx:id="barChart" animated="false" legendSide="BOTTOM" prefHeight="300">
+                                    <xAxis><CategoryAxis/></xAxis>
+                                    <yAxis><NumberAxis/></yAxis>
+                                </BarChart>
+                            </VBox>
+                            <VBox styleClass="card" spacing="8" prefWidth="330" minWidth="300">
+                                <HBox alignment="CENTER_LEFT">
+                                    <Label text="Alertes" styleClass="card-title"/>
+                                    <Region HBox.hgrow="ALWAYS"/>
+                                    <Label fx:id="alertCountLabel" styleClass="badge, badge-red"/>
+                                </HBox>
+                                <ListView fx:id="alertList" prefHeight="300" VBox.vgrow="ALWAYS"/>
+                            </VBox>
+                        </HBox>
+                    </VBox>
+                </ScrollPane>
+
+                <!-- Stock -->
+                <VBox fx:id="pageStock" styleClass="card" spacing="14">
+                    <fx:define><ToggleGroup fx:id="chipGroup"/></fx:define>
+                    <HBox alignment="CENTER_LEFT" spacing="14">
+                        <TextField fx:id="stockSearch" promptText="🔍  Rechercher par nom ou code-barres" prefWidth="340"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Label fx:id="stockCountLabel" styleClass="subtitle"/>
+                        <Button text="⇩  Exporter CSV" styleClass="btn-ghost" onAction="#onExport"/>
+                    </HBox>
+                    <HBox spacing="8" alignment="CENTER_LEFT">
+                        <ToggleButton fx:id="chipAll" text="Tous" selected="true" toggleGroup="$chipGroup" styleClass="chip"/>
+                        <ToggleButton fx:id="chipLow" text="Stock faible" toggleGroup="$chipGroup" styleClass="chip"/>
+                        <ToggleButton fx:id="chipOut" text="Rupture" toggleGroup="$chipGroup" styleClass="chip"/>
+                        <ToggleButton fx:id="chipSoon" text="Bientôt expirés" toggleGroup="$chipGroup" styleClass="chip"/>
+                        <ToggleButton fx:id="chipExpired" text="Expirés" toggleGroup="$chipGroup" styleClass="chip"/>
+                    </HBox>
+                    <TableView fx:id="stockTable" VBox.vgrow="ALWAYS"/>
+                </VBox>
+
+                <!-- Expirations -->
+                <VBox fx:id="pageExp" styleClass="card" spacing="14">
+                    <HBox alignment="CENTER_LEFT" spacing="10">
+                        <Label text="Alerter si le produit expire dans"/>
+                        <Spinner fx:id="daysSpinner" editable="true" prefWidth="95"/>
+                        <Label text="jours"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Label fx:id="expInfoLabel" styleClass="card-title"/>
+                    </HBox>
+                    <TableView fx:id="expTable" VBox.vgrow="ALWAYS"/>
+                </VBox>
+
+                <!-- Produits -->
+                <VBox fx:id="pageProduits" styleClass="card" spacing="14">
+                    <HBox alignment="CENTER_LEFT" spacing="10">
+                        <TextField fx:id="prodSearch" promptText="🔍  Rechercher par nom ou code-barres" prefWidth="340"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Button text="＋  Ajouter" styleClass="btn-primary" onAction="#onAdd"/>
+                        <Button text="Modifier" styleClass="btn-ghost" onAction="#onEdit"/>
+                        <Button text="Supprimer" styleClass="btn-danger" onAction="#onDelete"/>
+                    </HBox>
+                    <Label text="Astuce : double-cliquez sur une ligne pour la modifier." styleClass="subtitle"/>
+                    <TableView fx:id="prodTable" VBox.vgrow="ALWAYS"/>
+                </VBox>
+            </StackPane>
+        </VBox>
+    </VBox>
+
+    <!-- Toast notification -->
+    <Label fx:id="toastLabel" styleClass="toast" visible="false" wrapText="true" mouseTransparent="true"
+           StackPane.alignment="BOTTOM_RIGHT">
+        <StackPane.margin><Insets bottom="26" right="30"/></StackPane.margin>
+    </Label>
+</StackPane>

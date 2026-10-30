@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="gerant.controller.ProduitFormController" styleClass="form-root" prefWidth="520">
+    <VBox styleClass="form-header" spacing="4">
+        <Label fx:id="titleLabel" text="Nouveau produit" styleClass="form-title"/>
+        <Label text="Les champs marqués * sont obligatoires" styleClass="subtitle"/>
+    </VBox>
+    <GridPane styleClass="form-body" hgap="16" vgap="14">
+        <columnConstraints>
+            <ColumnConstraints percentWidth="50"/>
+            <ColumnConstraints percentWidth="50"/>
+        </columnConstraints>
+        <VBox spacing="5" GridPane.rowIndex="0" GridPane.columnIndex="0">
+            <Label text="CODE-BARRES *" styleClass="field-label"/>
+            <TextField fx:id="codeField" promptText="ex : 6130001"/>
+        </VBox>
+        <VBox spacing="5" GridPane.rowIndex="0" GridPane.columnIndex="1">
+            <Label text="NOM DU PRODUIT *" styleClass="field-label"/>
+            <TextField fx:id="nomField" promptText="ex : Lait 1L"/>
+        </VBox>
+        <VBox spacing="5" GridPane.rowIndex="1" GridPane.columnIndex="0">
+            <Label text="CATÉGORIE" styleClass="field-label"/>
+            <TextField fx:id="categorieField" promptText="ex : Laitier"/>
+        </VBox>
+        <VBox spacing="5" GridPane.rowIndex="1" GridPane.columnIndex="1">
+            <Label text="PRIX (DA) *" styleClass="field-label"/>
+            <TextField fx:id="prixField" promptText="ex : 95"/>
+        </VBox>
+        <VBox spacing="5" GridPane.rowIndex="2" GridPane.columnIndex="0">
+            <Label text="QUANTITÉ EN STOCK *" styleClass="field-label"/>
+            <TextField fx:id="quantiteField" promptText="ex : 50"/>
+        </VBox>
+        <VBox spacing="5" GridPane.rowIndex="2" GridPane.columnIndex="1">
+            <Label text="SEUIL D'ALERTE *" styleClass="field-label"/>
+            <TextField fx:id="seuilField" promptText="ex : 10"/>
+        </VBox>
+        <VBox spacing="5" GridPane.rowIndex="3" GridPane.columnIndex="0">
+            <Label text="DATE D'EXPIRATION" styleClass="field-label"/>
+            <DatePicker fx:id="datePicker" maxWidth="Infinity"/>
+        </VBox>
+    </GridPane>
+    <Label fx:id="errorLabel" styleClass="error-label" wrapText="true" style="-fx-padding: 8 26 0 26;"/>
+    <HBox styleClass="form-footer" spacing="10" alignment="CENTER_RIGHT">
+        <Button text="Annuler" styleClass="btn-ghost" onAction="#onCancel"/>
+        <Button text="Enregistrer" styleClass="btn-primary" onAction="#onSave"/>
+    </HBox>
+</VBox>
